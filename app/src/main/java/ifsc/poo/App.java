@@ -1,6 +1,4 @@
 package ifsc.poo;
-import edu.princeton.cs.algs4.Draw;
-import edu.princeton.cs.algs4.DrawListener;
 
 public class App {
     public static void main(String[] args) {

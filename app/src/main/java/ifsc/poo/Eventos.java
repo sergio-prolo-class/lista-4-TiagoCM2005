@@ -1,6 +1,12 @@
 package ifsc.poo;
+import edu.princeton.cs.algs4.DrawListener;
 
-public class Eventos {
+public class Eventos implements  DrawListener{
+        private boolean preenchido;
+        private int tamanho;
+        private int tamanho_max = 100;
+        private int tamanho_min = 100;
+
 
     // Metódo que funciona a leitura de diversos cliques rápidos
     public void mousePressed(double x, double y){
@@ -8,11 +14,27 @@ public class Eventos {
     }
 
     // 
-    @Override
+     @Override
     public void keyReleased(int i){
-        swtich(i){
-            case 99: // c   - clear
-            case 102: // f  - Alternar entre preenchido e vazio
+        switch(i){  
+            case 37:  // seta esquerda
+            case 38:  // seta cima
+            case 39:  // seta direita
+            case 40:  // seta baixo
+            case 70:  // F  - Alternar entre preenchido e vazio
+                preenchido = !preenchido;
+                System.out.println("Modo de preechimento: " + (preenchido ? "preenchido" : "vazado"));
+                break;
+            case 80:  // P  - Retorna os valores matématicos
+            case 81:  // Q  - Diminuiu o tamanho da fonte
+                tamanho = Math.max(tamanho - 5, tamanho_min); // Compara o maior valor, se tamanho se menor que tamanho_min, ele recebe o valor mínimo possível
+                System.out.println("Tamanho atual: " + tamanho);
+                break;
+            case 87:  // W  - Aumenta o tamanho da fonte
+                tamanho = Math.min(tamanho + 5, tamanho_max);
+                System.out.println("Tamanho atual: " + tamanho);
+                break;
+            case 67:  // C  - Limpar
             case 112: // F1 - Círculo
             case 113: // F2 - Quadrado
             case 114: // F3 - Pentágono
@@ -21,8 +43,9 @@ public class Eventos {
             case 117: // F6 - preto
             case 118: // F7 - azul
             case 119: // F8 - rosa
+            
         }
-    }
+    } 
 }
 
 /* Seleção de modo: Usando a tecla ‘F’, o usuário pode alternar entre impressão vazada ou preenchida.
