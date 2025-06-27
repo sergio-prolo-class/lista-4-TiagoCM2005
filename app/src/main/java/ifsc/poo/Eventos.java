@@ -9,12 +9,12 @@ import ifsc.poo.figuras.*;
 public class Eventos implements  DrawListener{
     // Atributos
         private boolean preenchido = false;
-        private double tamanho = 0.5;
+        private double tamanho = 1.0;
         private double tamanho_max = 2.0;
         private double tamanho_min = 0.2;
         private int figura_selecionada = 1;
         private Color corAtual = Color.BLACK; // Cor padrão para a borda quando preenchido
-    private ArrayList<Figura> figuras = new ArrayList<>(); // Uma lista de figuras desenhadas
+        private ArrayList<Figura> figuras = new ArrayList<>(); // Uma lista de figuras desenhadas
 
     // ========================MOUSE========================
 
@@ -43,20 +43,26 @@ public class Eventos implements  DrawListener{
     public void keyReleased(int i){
         switch(i){  
             case 37:  // seta esquerda
+                moverFigura(-0.2, 0); break;
             case 38:  // seta cima
+                moverFigura(0, 0.2); break;
             case 39:  // seta direita
+                moverFigura(0.2, 0); break;
             case 40:  // seta baixo
+                moverFigura(0, -0.2); break;
             case 70:  // F  - Alternar entre preenchido e vazio
                 preenchido = !preenchido;
                 System.out.println("Modo de preechimento: " + (preenchido ? "preenchido" : "vazado"));
                 break;
             case 80:  // P  - Retorna os valores matématicos
+                processarFiguras(); // Chama o método para processar as figuras desenhadas
+                break;
             case 81:  // Q  - Diminuiu o tamanho da fonte
-                tamanho = Math.max(tamanho - 0.2, tamanho_min); // Compara o maior valor, se tamanho se menor que tamanho_min, ele recebe o valor mínimo possível
+                tamanho = Math.max(tamanho - 0.5, tamanho_min); // Compara o maior valor, se tamanho se menor que tamanho_min, ele recebe o valor mínimo possível
                 System.out.println("Tamanho atual: " + tamanho);
                 break;
             case 87:  // W  - Aumenta o tamanho da fonte
-                tamanho = Math.min(tamanho + 0.2, tamanho_max);
+                tamanho = Math.min(tamanho + 0.5, tamanho_max);
                 System.out.println("Tamanho atual: " + tamanho);
                 break;
             case 67:  // C  - Limpar
@@ -93,8 +99,19 @@ public class Eventos implements  DrawListener{
         }
 
         }
-        public ArrayList<Figura> getFiguras() {
+    public ArrayList<Figura> getFiguras() {
             return figuras; // Retorna a lista de figuras desenhadas
+    }
+
+    private void processarFiguras(){
+        int total = figuras.size();
+        System.out.println("Total de figuras desenhadas: " + total);
+    }
+
+    private void moverFigura(double dx, double dy){
+        for(Figura figura: figuras){
+            figura.mover(dx, dy); // Move cada figura na lista
+        }
     }
 }
     

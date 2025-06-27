@@ -13,7 +13,6 @@ public class Quadrado extends Figura{
     public void desenhar(Draw d){
 
         d.setPenColor(cor);
-        d.setPenRadius(0.002); // Espessura da borda
 
         if(preenchido){
             d.setPenColor(Color.BLACK); // borda preta

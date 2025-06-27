@@ -20,17 +20,15 @@ public abstract class Figura {
         this.cor = cor;
     } 
 
-    ///////////////////////
-    // Funções abstratas // 
-    ///////////////////////
-    
     public abstract void desenhar(Draw d);
     public abstract double getArea();
     public abstract double getPerimetro();
 
-    ///////////////////////                   
-    // Funções GET e SET // 
-    ///////////////////////
+    public void mover(double dx, double dy) {
+        this.x += dx;
+        this.y += dy;
+    }
+
     public void setTamanho(int tamanho) {
         this.tamanho = tamanho;
     }

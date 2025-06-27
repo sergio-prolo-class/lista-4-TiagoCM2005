@@ -10,8 +10,7 @@ public class Circulo extends Figura {
 
     @Override
     public void desenhar(Draw d){
-        d.setPenColor(cor);
-        d.setPenRadius(0.002); // Espessura da borda
+        d.setPenColor(cor); 
 
         if(preenchido){
             d.setPenColor(Color.BLACK);
