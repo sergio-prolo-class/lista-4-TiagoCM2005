@@ -1,5 +1,7 @@
 package ifsc.poo;
 
+import java.util.ArrayList;
+
 import edu.princeton.cs.algs4.Draw;
 import ifsc.poo.figuras.Figura;
 
@@ -13,10 +15,12 @@ public class App {
     Eventos eventos = new Eventos();
     d.addListener(eventos);
 
-    // LOOP DE ANIMAÇÃO ADICIONADO AQUI
+    // LOOP DE ANIMAÇÃO
     while (true) {
         d.clear();
-        for(Figura figura : eventos.getFiguras()) {
+        // por estar ocorrendo um erro por estar modificando a lista de figuras enquanto ela está sendo iterada, usarei uma cópia da lista de figuras
+        ArrayList<Figura> figurasCopia = new ArrayList<>(eventos.getFiguras());
+        for(Figura figura : figurasCopia) {
             figura.desenhar(d);
         }
         d.show();
@@ -26,3 +30,4 @@ public class App {
 }
 }
 
+p
