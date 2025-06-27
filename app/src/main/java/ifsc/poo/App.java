@@ -1,10 +1,26 @@
 package ifsc.poo;
 
+import edu.princeton.cs.algs4.Draw;
+import ifsc.poo.figuras.Figura;
+
 public class App {
     public static void main(String[] args) {
+        Draw d = new Draw();
+        d.setXscale(0, 10);
+        d.setYscale(0, 10);
+        d.enableDoubleBuffering();
 
-        // Inicializa a aplicação com um tabuleiro 8x8
-        Tela tela = new Tela();
-        tela.desenharTela();
+        Eventos eventos = new Eventos();
+        d.addListener(eventos);
+
+        d.clear();
+        for(Figura figura : eventos.getFiguras()) {
+            figura.desenhar(d);
+        }
+        d.show();
+        
+
+        
+       
     }
 }

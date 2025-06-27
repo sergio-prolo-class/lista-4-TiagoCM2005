@@ -4,7 +4,7 @@ import java.awt.Color;
 import edu.princeton.cs.algs4.Draw;
 
 public class Circulo extends Figura {
-    public Circulo(double x, double y, int tamanho, boolean preenchido, Color cor){
+    public Circulo(double x, double y, double tamanho, boolean preenchido, Color cor){
         super(x, y, tamanho, preenchido, cor);
     }
 

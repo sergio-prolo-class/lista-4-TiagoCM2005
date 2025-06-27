@@ -7,12 +7,12 @@ public abstract class Figura {
     
     ///////////////////////
     protected double x,y;
-    protected int tamanho;
+    protected double tamanho;
     protected boolean preenchido;
     protected Color cor;
 
     ///////////////////////
-    public Figura(double x, double y, int tamanho, boolean preenchido, Color cor){
+    public Figura(double x, double y, double tamanho, boolean preenchido, Color cor){
         this.x = x;
         this.y = y;
         this.tamanho = tamanho;
@@ -35,7 +35,7 @@ public abstract class Figura {
         this.tamanho = tamanho;
     }
 
-    public int getTamanho() {
+    public double getTamanho() {
         return tamanho;
     }
 

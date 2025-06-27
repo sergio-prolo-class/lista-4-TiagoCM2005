@@ -1,17 +1,42 @@
 package ifsc.poo;
+
+import java.awt.Color;
+import java.util.ArrayList;
+
 import edu.princeton.cs.algs4.DrawListener;
+import ifsc.poo.figuras.*;
 
 public class Eventos implements  DrawListener{
-        private boolean preenchido;
-        private int tamanho;
-        private int tamanho_max = 100;
-        private int tamanho_min = 100;
+    // Atributos
+        private boolean preenchido = false;
+        private double tamanho = 0.5;
+        private double tamanho_max = 2.0;
+        private double tamanho_min = 0.2;
+        private int figura_selecionada = 1;
+        private Color corAtual = Color.BLACK; // Cor padrão para a borda quando preenchido
+    private ArrayList<Figura> figuras = new ArrayList<>(); // Uma lista de figuras desenhadas
 
+    // ========================MOUSE========================
 
-    // Metódo que funciona a leitura de diversos cliques rápidos
-    public void mousePressed(double x, double y){
-        System.out.printf("%g , %g", x,y);
+    public void mousePressed(double x, double y){    // Metódo que funciona a leitura de diversos cliques rápidos
+        Figura figura = null;
+        switch(figura_selecionada){
+            case 1:
+                figura = new Circulo(x,y, tamanho, preenchido, corAtual); 
+                break;
+            case 2: 
+                figura = new Quadrado(x,y, tamanho, preenchido, corAtual);
+                break;
+        }
+
+        if(figura != null){
+            figuras.add(figura);
+            System.out.printf("Figura adicionada em (%.2f, %.2f)%n", x, y);
+
+        }
     }
+
+    // ========================TECLADO========================
 
     // 
      @Override
@@ -27,37 +52,51 @@ public class Eventos implements  DrawListener{
                 break;
             case 80:  // P  - Retorna os valores matématicos
             case 81:  // Q  - Diminuiu o tamanho da fonte
-                tamanho = Math.max(tamanho - 5, tamanho_min); // Compara o maior valor, se tamanho se menor que tamanho_min, ele recebe o valor mínimo possível
+                tamanho = Math.max(tamanho - 0.2, tamanho_min); // Compara o maior valor, se tamanho se menor que tamanho_min, ele recebe o valor mínimo possível
                 System.out.println("Tamanho atual: " + tamanho);
                 break;
             case 87:  // W  - Aumenta o tamanho da fonte
-                tamanho = Math.min(tamanho + 5, tamanho_max);
+                tamanho = Math.min(tamanho + 0.2, tamanho_max);
                 System.out.println("Tamanho atual: " + tamanho);
                 break;
             case 67:  // C  - Limpar
+                figuras.clear(); // Limpa a lista de figuras
+                System.out.println("Todas as figuras foram removidas.");
+                break;
             case 112: // F1 - Círculo
+                figura_selecionada = 1; // Seleciona o círculo
+                System.out.println("Figura selecionada: Círculo");
+                break;
             case 113: // F2 - Quadrado
+                figura_selecionada = 2; // Seleciona o quadrado
+                System.out.println("Figura selecionada: Quadrado");
+                break;
             case 114: // F3 - Pentágono
             case 115: // F4 - Hexágano
             case 116: // F5 - vermelho
+                corAtual = Color.RED; // Define a cor atual como vermelho
+                System.out.println("Cor atual: Vermelho");
+                break;
             case 117: // F6 - preto
+                corAtual = Color.BLACK; // Define a cor atual como preto
+                System.out.println("Cor atual: Preto");
+                break;
             case 118: // F7 - azul
+                corAtual = Color.BLUE; // Define a cor atual como azul
+                System.out.println("Cor atual: Azul");
+                break;
             case 119: // F8 - rosa
+                corAtual = Color.PINK; // Define a cor atual como rosa
+                System.out.println("Cor atual: Rosa");
+                break;
             
         }
-    } 
+
+        }
+        public ArrayList<Figura> getFiguras() {
+            return figuras; // Retorna a lista de figuras desenhadas
+    }
 }
+    
 
-/* Seleção de modo: Usando a tecla ‘F’, o usuário pode alternar entre impressão vazada ou preenchida.
-Caso vazada, a cor da borda deve ser a cor selecionada pelo usuário. Caso preenchida, a cor da
-borda deve ser preta.
 
-Seleção de tamanho: Usando as teclas ‘Q’ e ‘W’, o usuário pode diminuir e aumentar o tamanho da
-figura a ser impressa, respectivamente. Você deve limitar o tamanho de impressão a valores mínimo
-e máximo, evitando a não visualização da impressão.
-Movimento: Usando as setas do teclado, o usuário pode mover todas as figuras desenhadas nas
-quatro direções cardinais.
-
-Limpeza: Usando a tecla ‘C’, o usuário pode limpar todos os desenhos da tela.
-Processar: Usando a tecla ‘P’, o usuário pode receber as seguintes informações sobre as figuras
-atualmente impressas na tela através do terminal: número total, soma perímetros e área média. */

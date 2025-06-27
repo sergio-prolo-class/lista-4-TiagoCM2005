@@ -5,7 +5,7 @@ import edu.princeton.cs.algs4.Draw;
 
 public class Quadrado extends Figura{
 
-    public Quadrado(double x, double y, int tamanho, boolean preenchido, Color cor){
+    public Quadrado(double x, double y, double  tamanho, boolean preenchido, Color cor){
         super(x, y, tamanho, preenchido, cor);
     }
 
