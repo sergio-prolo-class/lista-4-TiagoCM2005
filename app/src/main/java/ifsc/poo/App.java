@@ -24,10 +24,12 @@ public class App {
             figura.desenhar(d);
         }
         d.show();
+
+        // O trecho a seguir, foi para limitar o FPS da tela, ele pausa a execução do programa por 20 milissegundos.
+        // Sem ele, os desenhos ficam com pequenos cortes, como se fosse "falhas" no desenho.
         try { Thread.sleep(20); } 
         catch (InterruptedException e) { e.printStackTrace(); }
     }
 }
 }
 
-p

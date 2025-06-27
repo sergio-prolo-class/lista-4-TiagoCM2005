@@ -13,10 +13,10 @@ public class Circulo extends Figura {
         d.setPenColor(cor); 
 
         if(preenchido){
-            d.setPenColor(Color.BLACK);
-            d.filledCircle(x, y, tamanho);
             d.setPenColor(cor);
-            d.filledCircle(x, y, (tamanho - 0.05));
+            d.filledCircle(x, y, tamanho);
+            d.setPenColor(Color.BLACK);
+            d.circle(x, y, tamanho);
         } else {
             d.circle(x, y, tamanho);
         }

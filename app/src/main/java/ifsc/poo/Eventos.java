@@ -4,7 +4,11 @@ import java.awt.Color;
 import java.util.ArrayList;
 
 import edu.princeton.cs.algs4.DrawListener;
-import ifsc.poo.figuras.*;
+import ifsc.poo.figuras.Circulo;
+import ifsc.poo.figuras.Figura;
+import ifsc.poo.figuras.Hexagono;
+import ifsc.poo.figuras.Pentagono;
+import ifsc.poo.figuras.Quadrado;
 
 public class Eventos implements  DrawListener{
     // Atributos
@@ -27,14 +31,20 @@ public class Eventos implements  DrawListener{
             case 2: 
                 figura = new Quadrado(x,y, tamanho, preenchido, corAtual);
                 break;
+        
+            case 3:
+                figura = new Pentagono(x, y, tamanho, preenchido, corAtual);
+                break;
+            case 4: figura = new Hexagono(x, y, tamanho, preenchido, corAtual);
+                break;
         }
-
         if(figura != null){
             figuras.add(figura);
             System.out.printf("Figura adicionada em (%.2f, %.2f)%n", x, y);
 
         }
     }
+    
 
     // ========================TECLADO========================
 
@@ -42,55 +52,78 @@ public class Eventos implements  DrawListener{
      @Override
     public void keyReleased(int i){
         switch(i){  
+
             case 37:  // seta esquerda
                 moverFigura(-0.2, 0); break;
+
             case 38:  // seta cima
                 moverFigura(0, 0.2); break;
+
             case 39:  // seta direita
                 moverFigura(0.2, 0); break;
+
             case 40:  // seta baixo
                 moverFigura(0, -0.2); break;
+
             case 70:  // F  - Alternar entre preenchido e vazio
                 preenchido = !preenchido;
                 System.out.println("Modo de preechimento: " + (preenchido ? "preenchido" : "vazado"));
                 break;
+
             case 80:  // P  - Retorna os valores matématicos
                 processarFiguras(); // Chama o método para processar as figuras desenhadas
                 break;
+
             case 81:  // Q  - Diminuiu o tamanho da fonte
                 tamanho = Math.max(tamanho - 0.5, tamanho_min); // Compara o maior valor, se tamanho se menor que tamanho_min, ele recebe o valor mínimo possível
                 System.out.println("Tamanho atual: " + tamanho);
                 break;
+
             case 87:  // W  - Aumenta o tamanho da fonte
                 tamanho = Math.min(tamanho + 0.5, tamanho_max);
                 System.out.println("Tamanho atual: " + tamanho);
                 break;
+
             case 67:  // C  - Limpar
                 figuras.clear(); // Limpa a lista de figuras
                 System.out.println("Todas as figuras foram removidas.");
                 break;
+
             case 112: // F1 - Círculo
                 figura_selecionada = 1; // Seleciona o círculo
                 System.out.println("Figura selecionada: Círculo");
                 break;
+
             case 113: // F2 - Quadrado
                 figura_selecionada = 2; // Seleciona o quadrado
                 System.out.println("Figura selecionada: Quadrado");
                 break;
+
             case 114: // F3 - Pentágono
+                figura_selecionada = 3;
+                System.out.println("Figura selecionada: Pentágono");
+                break;
+
             case 115: // F4 - Hexágano
+                figura_selecionada = 4;
+                System.out.println("Figura selecionada: Hexágono");
+                break;
+
             case 116: // F5 - vermelho
                 corAtual = Color.RED; // Define a cor atual como vermelho
                 System.out.println("Cor atual: Vermelho");
                 break;
+
             case 117: // F6 - preto
                 corAtual = Color.BLACK; // Define a cor atual como preto
                 System.out.println("Cor atual: Preto");
                 break;
+
             case 118: // F7 - azul
                 corAtual = Color.BLUE; // Define a cor atual como azul
                 System.out.println("Cor atual: Azul");
                 break;
+
             case 119: // F8 - rosa
                 corAtual = Color.PINK; // Define a cor atual como rosa
                 System.out.println("Cor atual: Rosa");
@@ -105,15 +138,31 @@ public class Eventos implements  DrawListener{
 
     private void processarFiguras(){
         int total = figuras.size();
-        System.out.println("Total de figuras desenhadas: " + total);
+        
+
+        double soma_area = 0, soma_perimetro = 0;
+
+        for(Figura f : figuras){
+            soma_perimetro += f.getPerimetro();
+            soma_area += f.getArea();
+        }
+        if(total == 0){
+            System.out.println("Nenhuma figura foi desenhada ainda!");
+        }else{
+        System.out.printf("Total de figuras: %d%n", total);
+        System.out.printf("Soma dos perímetros: %.2f%n", soma_perimetro);
+        System.out.printf("Área: %.2f%n", soma_area / total);
+    }
     }
 
     private void moverFigura(double dx, double dy){
-        for(Figura figura: figuras){
+        for(Figura figura : figuras){
             figura.mover(dx, dy); // Move cada figura na lista
         }
     }
 }
+
+
     
 
 

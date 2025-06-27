@@ -15,10 +15,10 @@ public class Quadrado extends Figura{
         d.setPenColor(cor);
 
         if(preenchido){
-            d.setPenColor(Color.BLACK); // borda preta
+            d.setPenColor(cor); // borda preta
             d.filledSquare(x, y, tamanho);
-            d.setPenColor(cor); // preenchimento
-            d.filledSquare(x, y, tamanho - 0.05);
+            d.setPenColor(Color.BLACK); // borda preta
+            d.square(x, y, tamanho);
         } else {
             d.square(x, y, tamanho);
         }
