@@ -3,15 +3,14 @@ import java.awt.Color;
 
 import edu.princeton.cs.algs4.Draw;
 
+// Figura é uma classe abstrata que será usada por todas as figuras utilizadas no projeto: Circulo, Quadrado, Pentágono e Hexágono.
 public abstract class Figura {
     
-    ///////////////////////
     protected double x,y;
     protected double tamanho;
     protected boolean preenchido;
     protected Color cor;
 
-    ///////////////////////
     public Figura(double x, double y, double tamanho, boolean preenchido, Color cor){
         this.x = x;
         this.y = y;
@@ -20,10 +19,12 @@ public abstract class Figura {
         this.cor = cor;
     } 
 
+    // Aqui será as funções de uso do polimorfismo.
     public abstract void desenhar(Draw d);
     public abstract double getArea();
     public abstract double getPerimetro();
 
+    // Funções auxiliares para o funcionamento.
     public void mover(double dx, double dy) {
         this.x += dx;
         this.y += dy;

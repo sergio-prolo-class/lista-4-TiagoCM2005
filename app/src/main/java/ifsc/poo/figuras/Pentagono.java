@@ -9,6 +9,7 @@ public class Pentagono extends Figura {
         super(x, y, tamanho, preenchido, cor);
     }
 
+    // Uso de polimorfismo!
     @Override
     public void desenhar(Draw d){
         // é preciso calcular 5 vértices igualmente espaçadas em um círculo.
@@ -38,11 +39,13 @@ public class Pentagono extends Figura {
 
     }
 
+    // Uso de polimorfismo!
     @Override
     public double getArea(){
         return(5 * tamanho * tamanho * Math.tan(Math.PI / 5)) / 4;
     }
 
+    // Uso de polimorfismo!
     @Override
     public double getPerimetro(){
         double lado = 2 * tamanho * Math.sin(Math.PI / 5);

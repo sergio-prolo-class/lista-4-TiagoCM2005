@@ -1,3 +1,9 @@
+/*
+    Classe responsável por gerenciar os eventos, como os clicks do mouse e clicks do teclado.
+        - Foi utilizado a função mousePressed, pois ela aceita diversos cliques seguidos.
+        - KeyReleased para capturar ação do teclado, funcionou muito bem no primeiro teste e permanceu.
+ */
+
 package ifsc.poo;
 
 import java.awt.Color;
@@ -13,16 +19,18 @@ import ifsc.poo.figuras.Quadrado;
 public class Eventos implements  DrawListener{
     // Atributos
         private boolean preenchido = false;
-        private double tamanho = 1.0;
-        private double tamanho_max = 2.0;
-        private double tamanho_min = 0.2;
-        private int figura_selecionada = 1;
-        private Color corAtual = Color.BLACK; // Cor padrão para a borda quando preenchido
-        private ArrayList<Figura> figuras = new ArrayList<>(); // Uma lista de figuras desenhadas
+        private double tamanho = 1.0; // tamanho inicial 
+        private final double tamanho_max = 2.0; // tamanho máximo que a figura pode chegar
+        private final double tamanho_min = 0.2; // tamanho mínimo que a figura pode chegar
+        private int figura_selecionada = 1; // tipo de figurada, por padrão é o Círculo
+        private Color corAtual = Color.BLACK; // Cor padrão
+        private final ArrayList<Figura> figuras = new ArrayList<>(); // Uma lista de figuras desenhadas
 
     // ========================MOUSE========================
-
+    // Uso de polimorfismo! (Da interface DrawListener)
+    @Override
     public void mousePressed(double x, double y){    // Metódo que funciona a leitura de diversos cliques rápidos
+        // Quando o mouse é pressionado, ele verifica em qual figura está selecionada.
         Figura figura = null;
         switch(figura_selecionada){
             case 1:
@@ -47,9 +55,8 @@ public class Eventos implements  DrawListener{
     
 
     // ========================TECLADO========================
-
-    // 
-     @Override
+    // Uso de polimorfismo! (Da interface DrawListener)
+    @Override
     public void keyReleased(int i){
         switch(i){  
 
@@ -100,12 +107,12 @@ public class Eventos implements  DrawListener{
                 break;
 
             case 114: // F3 - Pentágono
-                figura_selecionada = 3;
+                figura_selecionada = 3; // Seleciona o Pentágono
                 System.out.println("Figura selecionada: Pentágono");
                 break;
 
             case 115: // F4 - Hexágano
-                figura_selecionada = 4;
+                figura_selecionada = 4; // Seleciona o Hexágono
                 System.out.println("Figura selecionada: Hexágono");
                 break;
 
@@ -124,39 +131,38 @@ public class Eventos implements  DrawListener{
                 System.out.println("Cor atual: Azul");
                 break;
 
-            case 119: // F8 - rosa
-                corAtual = Color.PINK; // Define a cor atual como rosa
-                System.out.println("Cor atual: Rosa");
+            case 119: // F8 - magenta
+                corAtual = Color.MAGENTA; // Define a cor atual como magenta
+                System.out.println("Cor atual: MAGENTA");
                 break;
-            
         }
-
-        }
+    }
     public ArrayList<Figura> getFiguras() {
-            return figuras; // Retorna a lista de figuras desenhadas
+        return figuras; // Retorna a lista de figuras desenhadas
     }
 
     private void processarFiguras(){
-        int total = figuras.size();
-        
 
+        int total = figuras.size();
         double soma_area = 0, soma_perimetro = 0;
 
-        for(Figura f : figuras){
+        for(Figura f : figuras){ // Acessa a lista de figuras e soma todas os perimetros e areas delas.
             soma_perimetro += f.getPerimetro();
             soma_area += f.getArea();
         }
+
         if(total == 0){
             System.out.println("Nenhuma figura foi desenhada ainda!");
-        }else{
-        System.out.printf("Total de figuras: %d%n", total);
-        System.out.printf("Soma dos perímetros: %.2f%n", soma_perimetro);
-        System.out.printf("Área: %.2f%n", soma_area / total);
-    }
+        }
+        else{
+            System.out.printf("Total de figuras: %d%n", total);
+            System.out.printf("Soma dos perímetros: %.2f%n", soma_perimetro);
+            System.out.printf("Área: %.2f%n", soma_area / total);
+        }
     }
 
     private void moverFigura(double dx, double dy){
-        for(Figura figura : figuras){
+        for(Figura figura : figuras){ // Acessa a lista de figuras, e em cada figura adiciona 0.5 na coordenada desejada.
             figura.mover(dx, dy); // Move cada figura na lista
         }
     }

@@ -9,6 +9,7 @@ public class Quadrado extends Figura{
         super(x, y, tamanho, preenchido, cor);
     }
 
+    // Uso de polimorfismo!
     @Override
     public void desenhar(Draw d){
 
@@ -24,11 +25,13 @@ public class Quadrado extends Figura{
         }
     }
 
+    // Uso de polimorfismo!
     @Override
     public double getArea(){
         return tamanho * tamanho;
     }
 
+    // Uso de polimorfismo!
     @Override
     public double getPerimetro(){
         return 4 * tamanho;

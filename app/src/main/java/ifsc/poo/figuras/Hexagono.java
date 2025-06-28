@@ -10,15 +10,16 @@ public class Hexagono extends Figura {
         super(x, y, tamanho, preenchido, cor);
     }
 
+    // Uso de polimorfismo!
     @Override
     public void desenhar(Draw d){
-        // é preciso calcular 5 vértices igualmente espaçadas em um círculo.
+        // é preciso calcular 6 vértices igualmente espaçadas em um círculo.
 
         double[] xs = new double[6];
         double[] ys = new double[6];
 
         for(int i = 0; i < 6; i++){
-            // Cada ponto gira 72° em relação ao anterior, a váriavel i é responsável por isso, cada interação existe a "rotação" de 72°
+            // Cada ponto gira 60° em relação ao anterior, a váriavel i é responsável por isso, cada interação existe a "rotação" de 60°
             // Ponto inicial é no topo;
             double angulo = Math.toRadians(90 + i *60);
     
@@ -39,11 +40,13 @@ public class Hexagono extends Figura {
 
     }
 
+    // Uso de polimorfismo!
     @Override
     public double getArea() {
         return (3 * Math.sqrt(3) / 2) * tamanho * tamanho;
     }
 
+    // Uso de polimorfismo!
     @Override
     public double getPerimetro() {
         return 6 * tamanho;

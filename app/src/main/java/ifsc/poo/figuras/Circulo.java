@@ -8,6 +8,7 @@ public class Circulo extends Figura {
         super(x, y, tamanho, preenchido, cor);
     }
 
+    // Uso de polimorfismo!
     @Override
     public void desenhar(Draw d){
         d.setPenColor(cor); 
@@ -22,11 +23,13 @@ public class Circulo extends Figura {
         }
     }
 
+    // Uso de polimorfismo!
     @Override
     public double getArea(){
         return Math.PI * tamanho * tamanho;
     }
 
+    // Uso de polimorfismo!
     @Override
     public double getPerimetro(){
         
