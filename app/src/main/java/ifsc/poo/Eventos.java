@@ -23,7 +23,7 @@ public class Eventos implements  DrawListener{
         private final double tamanho_max = 2.0; // tamanho máximo que a figura pode chegar
         private final double tamanho_min = 0.2; // tamanho mínimo que a figura pode chegar
         private int figura_selecionada = 1; // tipo de figurada, por padrão é o Círculo
-        private Color corAtual = Color.BLACK; // Cor padrão
+        private Color corAtual = Color.MAGENTA; // Cor padrão
         private final ArrayList<Figura> figuras = new ArrayList<>(); // Uma lista de figuras desenhadas
 
     // ========================MOUSE========================
@@ -121,9 +121,9 @@ public class Eventos implements  DrawListener{
                 System.out.println("Cor atual: Vermelho");
                 break;
 
-            case 117: // F6 - preto
-                corAtual = Color.BLACK; // Define a cor atual como preto
-                System.out.println("Cor atual: Preto");
+            case 117: // F6 - laranja
+                corAtual = Color.ORANGE; // Define a cor atual como Laranja, que parece amarelo
+                System.out.println("Cor atual: Laranja(que parece amarelo)");
                 break;
 
             case 118: // F7 - azul
