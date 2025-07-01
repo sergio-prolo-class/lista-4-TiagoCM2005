@@ -9,6 +9,7 @@ package ifsc.poo;
 import java.awt.Color;
 import java.util.ArrayList;
 
+import edu.princeton.cs.algs4.Draw;
 import edu.princeton.cs.algs4.DrawListener;
 import ifsc.poo.figuras.Circulo;
 import ifsc.poo.figuras.Figura;
@@ -25,7 +26,22 @@ public class Eventos implements  DrawListener{
         private int figura_selecionada = 1; // tipo de figurada, por padrão é o Círculo
         private Color corAtual = Color.MAGENTA; // Cor padrão
         private final ArrayList<Figura> figuras = new ArrayList<>(); // Uma lista de figuras desenhadas
-
+        private Draw d;
+    
+    public void setDraw(Draw d){
+        this.d = d;
+    }
+    // Uso de polimorfismo! (Da interface DrawListener)
+    @Override
+    public void update(){
+        System.out.println("Atualizando...");
+        if(d == null) return;
+        d.clear();
+        for(Figura f : figuras){
+            f.desenhar(d);
+        }
+        d.show();
+    }
     // ========================MOUSE========================
     // Uso de polimorfismo! (Da interface DrawListener)
     @Override
